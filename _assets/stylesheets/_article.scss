@@ -1,10 +1,10 @@
 article {
     background:#fff;
     padding:60px 0;
-    font-size:18px;
+    font-size:20px;
 
     .container > header, .container > section, .container > footer {
-        margin:0 4em;
+        margin:0 3em;
     }
 
     .social {
@@ -82,15 +82,15 @@ article {
 
 
     ol, ul {
-        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.5em;
         margin: 1.5em 0;
         padding: 0;
         list-style-position: outside;
         padding-left: 1.5em;
 
         li {
-            font-weight:450;
-            margin-bottom:0.5em;
+            margin-bottom:0.8em;
         }
     }
 

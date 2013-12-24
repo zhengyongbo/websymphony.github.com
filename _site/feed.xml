@@ -6,17 +6,17 @@
     <atom:link href="http://websymphony.net/feed.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Dec 2013 17:40:03 +0000</pubDate>
-    <lastBuildDate>Tue, 24 Dec 2013 17:40:03 +0000</lastBuildDate>
+    <pubDate>Tue, 24 Dec 2013 18:14:37 +0000</pubDate>
+    <lastBuildDate>Tue, 24 Dec 2013 18:14:37 +0000</lastBuildDate>
 
     
     
     <item>
       <title>I dont have an itch</title>
-      <link>http://websymphony.net/2013/05/15/i-dont-have-an-itch/</link>
+      <link>http://websymphony.net/blog/2013/05/15/i-dont-have-an-itch/</link>
       <pubDate>Wed, 15 May 2013 22:25:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2013/05/15/i-dont-have-an-itch</guid>
+      <guid>http://websymphony.net/blog/2013/05/15/i-dont-have-an-itch</guid>
       <description>&lt;p&gt;If you are a programmer and need constant ideas to work on, there comes a time when the ideas are just not there. And if you ask someone for advice, lot of times suggestion is that you should “scratch your own itch”. In other words, try to solve your own problem. And since, it is likely that lot of people will be struggling with the same problem as you, you might uncover a market.&lt;/p&gt;
 
 &lt;p&gt;The advice sounds fine and dandy, but what about the people who are happy with status quo. Let me give you an example:&lt;/p&gt;
@@ -42,10 +42,10 @@
     
     <item>
       <title>Last couple of weeks in review for HipCV</title>
-      <link>http://websymphony.net/2013/03/02/last-couple-of-weeks-in-review-for-hipcv/</link>
+      <link>http://websymphony.net/blog/2013/03/02/last-couple-of-weeks-in-review-for-hipcv/</link>
       <pubDate>Sat, 02 Mar 2013 08:31:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2013/03/02/last-couple-of-weeks-in-review-for-hipcv</guid>
+      <guid>http://websymphony.net/blog/2013/03/02/last-couple-of-weeks-in-review-for-hipcv</guid>
       <description>&lt;p&gt;In this post I review past couple of weeks for my current project HipCV.&lt;/p&gt;
 
 &lt;p&gt;Two weeks ago, I launched a service for creating online resumes called &lt;a href=&quot;https://hipcv.com&quot;&gt;HipCV&lt;/a&gt;. The response to the site has been lukewarm, nothing majorly ground breaking. Which is understandable as there are many resume builders already out there. Also, there has not been any serious marketing effort yet from my end to promote the service.&lt;/p&gt;
@@ -97,10 +97,10 @@
     
     <item>
       <title>So it Begins</title>
-      <link>http://websymphony.net/2013/02/19/so-it-begins/</link>
+      <link>http://websymphony.net/blog/2013/02/19/so-it-begins/</link>
       <pubDate>Tue, 19 Feb 2013 20:06:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2013/02/19/so-it-begins</guid>
+      <guid>http://websymphony.net/blog/2013/02/19/so-it-begins</guid>
       <description>&lt;p&gt;For the first time, I have launched something that I am planning to charge money for. You know what, scratch that. Actually it is the first time I have seen something till the end.&lt;/p&gt;
 
 &lt;p&gt;It has been only 3 days since the “launch” and I have already realized that partial completion of arbitrary feature list is not the end, it is actually far from it. When you “launch” a web application, that launch doesn’t really mean anything. No one knows about it, no one is visiting it, no one is searching for it. And that’s where the actual start is, a start to gather visitors and a start to convert those visitors into paying users.&lt;/p&gt;
@@ -140,10 +140,10 @@
     
     <item>
       <title>Fixing utf8 encoding issue in Postgres</title>
-      <link>http://websymphony.net/2012/10/20/fixing-utf8-encoding-issue-in-postgres/</link>
+      <link>http://websymphony.net/blog/2012/10/20/fixing-utf8-encoding-issue-in-postgres/</link>
       <pubDate>Sat, 20 Oct 2012 12:05:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2012/10/20/fixing-utf8-encoding-issue-in-postgres</guid>
+      <guid>http://websymphony.net/blog/2012/10/20/fixing-utf8-encoding-issue-in-postgres</guid>
       <description>&lt;p&gt;I was trying to setup Postgres for rails on an Ubuntu machine. And on running&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;rake&lt;/span&gt; &lt;span class='ss'&gt;db&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -185,10 +185,10 @@
     
     <item>
       <title>How 'this' in javascript is similar to 'self' in ruby</title>
-      <link>http://websymphony.net/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby/</link>
+      <link>http://websymphony.net/blog/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby/</link>
       <pubDate>Sat, 21 Apr 2012 13:23:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby</guid>
+      <guid>http://websymphony.net/blog/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby</guid>
       <description>&lt;p&gt;When you read or learn something new, you always try to find a correlation of new knowledge to something you already knew. So when I learned how ‘self’ changes in a ruby program, I couldn’t help but notice similarity to ‘this’ in javascript. In both ruby and javascript, ‘self’ and ‘this’ refer to the current object. Both ‘self’ and ‘this’ are transient and change depending upon the context.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;Lets consider an example of ‘self’ in ruby first.&lt;/p&gt;
@@ -234,10 +234,10 @@
     
     <item>
       <title>Where to find people to validate your MVP?</title>
-      <link>http://websymphony.net/2012/03/21/where-to-find-people-to-validate-your-mvp/</link>
+      <link>http://websymphony.net/blog/2012/03/21/where-to-find-people-to-validate-your-mvp/</link>
       <pubDate>Wed, 21 Mar 2012 00:31:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2012/03/21/where-to-find-people-to-validate-your-mvp</guid>
+      <guid>http://websymphony.net/blog/2012/03/21/where-to-find-people-to-validate-your-mvp</guid>
       <description>&lt;p&gt;Its 6:00am, your alarm buzzed for the 4th time. There is no denying the inevitable anymore, you have to finally get up. You prepare yourself for the same daily grind, curse your current job and wonder why don’t you ever get one of those world changing brilliant ideas. Now you are finally getting ready, looking in the mirror for last bit of self resolve that will take you through the day. And then it comes to you. An epiphany, finally an idea that is amazing. You get ready and head out, it feels different this time. It is going to work this time, it is going to change the internet and your life forever, you say to yourself.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;No matter how hard you try, you are just not able to get it out of your head, it just keeps bouncing back. Itching to just get home and start documenting all the features that your brain can spit out.&lt;/p&gt;
@@ -277,10 +277,10 @@
     
     <item>
       <title>How Logical AND and OR Operators Actually Work in Javascript.</title>
-      <link>http://websymphony.net/2011/11/02/how-logical-and-and-or-operators-actually-work-in-javascript/</link>
+      <link>http://websymphony.net/blog/2011/11/02/how-logical-and-and-or-operators-actually-work-in-javascript/</link>
       <pubDate>Wed, 02 Nov 2011 21:44:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2011/11/02/how-logical-and-and-or-operators-actually-work-in-javascript</guid>
+      <guid>http://websymphony.net/blog/2011/11/02/how-logical-and-and-or-operators-actually-work-in-javascript</guid>
       <description>&lt;p&gt;Last night, I watched &lt;em&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=v2ifWcnQs6M&quot; title=&quot;Douglas Crockford: The JavaScript Programming Language&quot;&gt;Douglas Crockford: The JavaScript Programming Language&lt;/a&gt;&lt;/em&gt; and learned something interesting about logical &lt;strong&gt;&lt;em&gt;AND&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;OR&lt;/em&gt;&lt;/strong&gt; operators in javascript. Thought, I should share it with everyone.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;Lets look at the logical &lt;strong&gt;&lt;em&gt;AND&lt;/em&gt;&lt;/strong&gt; operator first.&lt;/p&gt;
@@ -338,10 +338,10 @@
     
     <item>
       <title>Using MongoDB With BackboneJS</title>
-      <link>http://websymphony.net/2011/09/12/using-mongodb-with-backbonejs/</link>
+      <link>http://websymphony.net/blog/2011/09/12/using-mongodb-with-backbonejs/</link>
       <pubDate>Mon, 12 Sep 2011 22:28:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2011/09/12/using-mongodb-with-backbonejs</guid>
+      <guid>http://websymphony.net/blog/2011/09/12/using-mongodb-with-backbonejs</guid>
       <description>&lt;p&gt;So I ran into a small issue while working on a Rails 3.1 app which uses MongoDB as a backend and BackboneJS for bits and pieces of interactive ui. Changes in the &lt;em&gt;Collections&lt;/em&gt;, i.e. addition or removal of &lt;em&gt;Model&lt;/em&gt; objects to the &lt;em&gt;Collection&lt;/em&gt; were not triggering appropriately binded &lt;em&gt;View&lt;/em&gt; functions.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;In MongoDB to identify a document uniquely we have “_id” attribute, which is similar to “id” column in relational database, which identifies a row uniquely.&lt;/p&gt;
@@ -358,10 +358,10 @@
     
     <item>
       <title>First Post</title>
-      <link>http://websymphony.net/2011/09/03/first-post/</link>
+      <link>http://websymphony.net/blog/2011/09/03/first-post/</link>
       <pubDate>Sat, 03 Sep 2011 21:32:00 +0000</pubDate>
       <author></author>
-      <guid>http://websymphony.net/2011/09/03/first-post</guid>
+      <guid>http://websymphony.net/blog/2011/09/03/first-post</guid>
       <description>&lt;p&gt;So I have finally decided to move my blog from &lt;a href=&quot;http://websymphony.posterous.com&quot;&gt;posterous&lt;/a&gt; to &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt;. Was planning on doing this for ages, just never got chance to go about it. After moving to Posterous, I never really liked the way it was setup. Lack of &lt;a href=&quot;http://disqus.com&quot;&gt;Disqus&lt;/a&gt; commenting support, that annoying posterous header on top right corner on every page, generic looking low contrast themes, lack of enough control over the content and formatting. Just didn’t feel right. So finally decided to take the plunge and take things back into my control.&lt;/p&gt;
 
 &lt;p&gt;Whole process of creating blog on Octopress was pretty straightforward, since documentation is pretty self explanatory. Only gotcha I ran into was to configure it with my domain using CNAME file. Had to modify the rakefile little bit to get that working.&lt;/p&gt;
