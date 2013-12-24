@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} &mdash; {{ site.inc.title }}{% else %}{{ site.inc.title }} &mdash; {{ site.inc.subtitle }}{% endif %}</title>
+    {% stylesheet main %}
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/favicon.png"/>
+    <link href="{{ site_url }}/feed.xml" rel="alternate" type="application/rss+xml" title="{{ site.inc.title }}" />
+    <meta name="title" content="{% if page.title %}{{ page.title }} {% else %}{{ site.inc.title }}{% endif %}">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    {% if page.site.gplus %}<link rel="publisher" href="https://plus.google.com/{{ site.inc.gplus }}">{% endif %}
+    {% if page.author.gplus %}<link rel="author" href="https://plus.google.com/{{ page.author.gplus }}">{% endif %}
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} {% else %}{{ site.inc.title }}{% endif %}"/>
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+    {% if page.cover_image %}
+    <meta property="og:image" content="{{ site.url }}/images/{{ page.cover_image }}"/>
+    {% if page.main_image %}
+    <meta property="og:image" content="{{ site.url }}/images/{{ page.main_image }}"/>
+    {% endif %}
+    <meta property="og:image" content="{{ site.url }}/images/{{ site.inc.logo }}"/>
+    {% endif %}
+    {% if page.excerpt %}
+    <meta property="og:description" content="{{ page.excerpt }}"/>
+    <meta name="description" content="{{ page.excerpt }}"/>
+    {% endif %}
+    <meta property="og:site_name" content="{{ site.inc.title }}">
+</head>
+<body>
+
+<section class="site-nav container">
+    <header>
+        <nav id="navigation">
+            <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                <ul>
+                    <li><a class="brand" href="/">Ag</a></li>
+                    <li><a href="/about" class="about">About</a></li>
+                    <li><a href="/projects" class="about">Projects</a></li>
+                    <li><a href="/contact" class="about">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</section>
+
+{{ content }}
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-container">
+          <div class="pure-g-r">
+              <div class="pure-u-1 text-center">
+                <div class="pure-menu pure-menu-open pure-menu-horizontal social-links">
+                    <ul>
+                        {% if site.inc.twitter %}
+                            <li><a href="https://twitter.com/{{site.inc.twitter}}" target="_blank"><i class="fa fa-twitter"></i> </a></li>
+                          {% endif %}
+                          {% if site.inc.github %}
+                            <li><a href="https://github.com/{{site.inc.github}}" target="_blank"><i class="fa fa-github"></i> </a></li>
+                          {% endif %}
+                          {% if site.inc.instagram %}
+                            <li><a href="https://instagram.com/{{site.inc.instagram}}" target="_blank"><i class="fa fa-instagram"></i> </a></li>
+                          {% endif %}
+                          {% if site.inc.gplus %}
+                            <li><a href="https://plus.google.com/{{site.inc.gplus}}" target="_blank"><i class="fa fa-google-plus"> </i></a></li>
+                          {% endif %}
+                    </ul>
+                </div>
+              </div>
+          </div>
+          <div class="pure-g-r">
+            <div class="pure-u-1">
+              <p class="text-center">
+                Copyright &copy; {{ site.time | date: "%Y" }} - {{ site.inc.author }}
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+</footer>
+
+{% include _scripts.html %}
+
+</body>
+</html>

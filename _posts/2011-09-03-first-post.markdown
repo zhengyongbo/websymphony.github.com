@@ -2,13 +2,14 @@
 layout: post
 title: "First Post"
 date: 2011-09-03 21:32
+excerpt: How I moved my blog from Posterous over to Octopress.
 comments: true
 ---
 
 So I have finally decided to move my blog from [posterous](http://websymphony.posterous.com) to [Octopress](http://octopress.org). Was planning on doing this for ages, just never got chance to go about it.
 After moving to Posterous, I never really liked the way it was setup. Lack of [Disqus](http://disqus.com) commenting support, that annoying posterous header on top right corner on every page, generic looking low contrast themes, lack of enough control over the content and formatting. Just didn't feel right. So finally decided to take the plunge and take things back into my control.
 
-<!--more-->
+
 Whole process of creating blog on Octopress was pretty straightforward, since documentation is pretty self explanatory. Only gotcha I ran into was to configure it with my domain using CNAME file. Had to modify the rakefile little bit to get that working.
 
 Had to modify Rakefile

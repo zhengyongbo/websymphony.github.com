@@ -1,0 +1,23 @@
+.projects-container{
+  img{
+    text-align:center;
+    margin-top:1em;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+      -webkit-box-shadow: 0 0 10px #0088cc;
+      -moz-box-shadow: 0 0 10px #0088cc;
+      box-shadow: 0 0 10px #0088cc;
+    }
+  }
+  .project-title,
+  .project-description{
+      padding-left:1.7em;
+      font-size:95%;
+      a:visited {
+        color:#fff;
+      }
+  }
+}
