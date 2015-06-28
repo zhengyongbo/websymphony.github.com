@@ -6,8 +6,8 @@
     <atom:link href="http://websymphony.net/feed.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Sun, 28 Jun 2015 14:28:33 +0000</pubDate>
-    <lastBuildDate>Sun, 28 Jun 2015 14:28:33 +0000</lastBuildDate>
+    <pubDate>Sun, 28 Jun 2015 15:35:50 +0000</pubDate>
+    <lastBuildDate>Sun, 28 Jun 2015 15:35:50 +0000</lastBuildDate>
 
     
     
@@ -19,7 +19,7 @@
       <guid>http://websymphony.net/blog/2015/06/28/how-to-use-uuid-as-primary-key-in-ecto-phoenix</guid>
       <description>&lt;p&gt;Recently, I was playing around with &lt;a href=&quot;http://phoenixframework.org&quot;&gt;Phoenix Framework (version: &lt;em&gt;0.13.1&lt;/em&gt;)&lt;/a&gt; with Postgres as the database. Instead of using IDs for primary key, I wanted to use UUIDs. Since Phoenix and associated projects haven’t hit 1.0 yet, api is still under flux.&lt;/p&gt;
 
-&lt;p&gt;As of this post, there are two resources with instructions on how to achive this and both didn’t seem to work. A &lt;a href=&quot;http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated&quot;&gt;stackoverflow post&lt;/a&gt; and a &lt;a href=&quot;https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE&quot;&gt;google group discussion&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As of this post, there are two resources with instructions on how to achieve this and both didn’t seem to work. A &lt;a href=&quot;http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated&quot;&gt;stackoverflow post&lt;/a&gt; and a &lt;a href=&quot;https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE&quot;&gt;google group discussion&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Since ecto version &lt;em&gt;0.12.1&lt;/em&gt; using UUIDs as primary key coudn’t be any easier. Here is how to do it:&lt;/p&gt;
 &lt;!--more--&gt;

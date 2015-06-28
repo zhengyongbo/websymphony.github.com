@@ -9,7 +9,7 @@ excerpt: In this, I explain how to use UUIDs as primary key instead of IDs when 
 Recently, I was playing around with [Phoenix Framework (version: _0.13.1_)](http://phoenixframework.org) with Postgres as the database. Instead of using IDs for primary key, I wanted to use UUIDs.
 Since Phoenix and associated projects haven't hit 1.0 yet, api is still under flux.
 
-As of this post, there are two resources with instructions on how to achive this and both didn't seem to work. A [stackoverflow post](http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated) and a [google group discussion](https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE).
+As of this post, there are two resources with instructions on how to achieve this and both didn't seem to work. A [stackoverflow post](http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated) and a [google group discussion](https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE).
 
 Since ecto version _0.12.1_ using UUIDs as primary key coudn't be any easier.
 Here is how to do it:
