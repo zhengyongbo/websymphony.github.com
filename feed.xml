@@ -6,9 +6,83 @@
     <atom:link href="http://websymphony.net/feed.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Fri, 04 Apr 2014 20:30:23 +0000</pubDate>
-    <lastBuildDate>Fri, 04 Apr 2014 20:30:23 +0000</lastBuildDate>
+    <pubDate>Sun, 28 Jun 2015 14:28:33 +0000</pubDate>
+    <lastBuildDate>Sun, 28 Jun 2015 14:28:33 +0000</lastBuildDate>
 
+    
+    
+    <item>
+      <title>How to use UUIDs as Primary Key with ecto</title>
+      <link>http://websymphony.net/blog/2015/06/28/how-to-use-uuid-as-primary-key-in-ecto-phoenix/</link>
+      <pubDate>Sun, 28 Jun 2015 13:23:00 +0000</pubDate>
+      <author></author>
+      <guid>http://websymphony.net/blog/2015/06/28/how-to-use-uuid-as-primary-key-in-ecto-phoenix</guid>
+      <description>&lt;p&gt;Recently, I was playing around with &lt;a href=&quot;http://phoenixframework.org&quot;&gt;Phoenix Framework (version: &lt;em&gt;0.13.1&lt;/em&gt;)&lt;/a&gt; with Postgres as the database. Instead of using IDs for primary key, I wanted to use UUIDs. Since Phoenix and associated projects haven’t hit 1.0 yet, api is still under flux.&lt;/p&gt;
+
+&lt;p&gt;As of this post, there are two resources with instructions on how to achive this and both didn’t seem to work. A &lt;a href=&quot;http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated&quot;&gt;stackoverflow post&lt;/a&gt; and a &lt;a href=&quot;https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE&quot;&gt;google group discussion&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since ecto version &lt;em&gt;0.12.1&lt;/em&gt; using UUIDs as primary key coudn’t be any easier. Here is how to do it:&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;The migration that creates the table will need to be aware of the fact that ID column is going to be of UUID type.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='elixir'&gt;&lt;span class='k'&gt;defmodule&lt;/span&gt; &lt;span class='no'&gt;Blog&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;Repo&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;Migrations&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;CreatePost&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;  &lt;/span&gt;&lt;span class='kn'&gt;use&lt;/span&gt; &lt;span class='no'&gt;Ecto&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;Migration&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='n'&gt;up&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+
+&lt;span class='k'&gt;    &lt;/span&gt;&lt;span class='c1'&gt;# Here we are specifying to not use default auto-incrementing id as primary key&lt;/span&gt;
+    &lt;span class='n'&gt;create&lt;/span&gt; &lt;span class='n'&gt;table&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:posts&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;primary_key:&lt;/span&gt; &lt;span class='no'&gt;false&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;      &lt;/span&gt;&lt;span class='c1'&gt;# Here we explicitly set the type of id column as uuid and assign it as primary key&lt;/span&gt;
+      &lt;span class='n'&gt;add&lt;/span&gt; &lt;span class='ss'&gt;:id&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:uuid&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;primary_key:&lt;/span&gt; &lt;span class='no'&gt;true&lt;/span&gt;
+      &lt;span class='n'&gt;add&lt;/span&gt; &lt;span class='ss'&gt;:title&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:string&lt;/span&gt;
+      &lt;span class='n'&gt;add&lt;/span&gt; &lt;span class='ss'&gt;:body&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:text&lt;/span&gt;
+
+      &lt;span class='n'&gt;timestamps&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='n'&gt;down&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;    &lt;/span&gt;&lt;span class='n'&gt;drop&lt;/span&gt; &lt;span class='n'&gt;table&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:posts&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We will also need to update our model definition so that it can auto-generate UUIDs for primary keys.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='elixir'&gt;&lt;span class='k'&gt;defmodule&lt;/span&gt; &lt;span class='no'&gt;Blog&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;Post&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;  &lt;/span&gt;&lt;span class='kn'&gt;use&lt;/span&gt; &lt;span class='no'&gt;Blog&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='no'&gt;Web&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:model&lt;/span&gt;
+
+  &lt;span class='c1'&gt;# :binary_id is managed by drivers/adapters, it will be UUID for mysql, postgres&lt;/span&gt;
+  &lt;span class='c1'&gt;#  but can be ObjectID if later you decide to use mongo&lt;/span&gt;
+  &lt;span class='nv'&gt;@primary_key&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;&lt;span class='ss'&gt;:id&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:binary_id&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;autogenerate:&lt;/span&gt; &lt;span class='no'&gt;true&lt;/span&gt;&lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;schema&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;    &lt;/span&gt;&lt;span class='n'&gt;field&lt;/span&gt; &lt;span class='ss'&gt;:title&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:string&lt;/span&gt;
+    &lt;span class='n'&gt;field&lt;/span&gt; &lt;span class='ss'&gt;:body&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:string&lt;/span&gt;
+
+    &lt;span class='n'&gt;timestamps&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='nv'&gt;@required_fields&lt;/span&gt; &lt;span class='err'&gt;~&lt;/span&gt;&lt;span class='n'&gt;w&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;title&lt;/span&gt; &lt;span class='n'&gt;body&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='nv'&gt;@optional_fields&lt;/span&gt; &lt;span class='err'&gt;~&lt;/span&gt;&lt;span class='n'&gt;w&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt;
+
+
+  &lt;span class='nv'&gt;@doc&lt;/span&gt; &lt;span class='sd'&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class='sd'&gt;  Creates a changeset based on the `model` and `params`.&lt;/span&gt;
+
+&lt;span class='sd'&gt;  If `params` are nil, an invalid changeset is returned&lt;/span&gt;
+&lt;span class='sd'&gt;  with no validation performed.&lt;/span&gt;
+&lt;span class='sd'&gt;  &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='n'&gt;changeset&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;model&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt; &lt;span class='p'&gt;\\&lt;/span&gt; &lt;span class='ss'&gt;:empty&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+&lt;span class='k'&gt;    &lt;/span&gt;&lt;span class='n'&gt;model&lt;/span&gt;
+    &lt;span class='o'&gt;|&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;cast&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nv'&gt;@required_fields&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nv'&gt;@optional_fields&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And that is all you need to use UUIDs from primary keys with ecto and phoenix framework.&lt;/p&gt;
+
+&lt;p&gt;As an aside, I really like how these projects are shaping up. Also, the community around Elixir and Phoenix is absolutely fantastic. It took me no more than 5 minutes to figure this out by hopping on Elixir IRC and José Valim himself explaining how to solve this problem.&lt;/p&gt;</description>
+    </item>
+    
     
     
     <item>
