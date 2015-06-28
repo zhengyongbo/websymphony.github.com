@@ -3,23 +3,23 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How 'this' in javascript is similar to 'self' in ruby &mdash; Hi, I am Amit. I make things</title>
+    <title>How to use UUIDs as Primary Key with ecto &mdash; Hi, I am Amit. I make things</title>
     <link rel="stylesheet" href="/assets/main.css">
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/favicon.png"/>
     <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Hi, I am Amit. I make things" />
-    <meta name="title" content="How 'this' in javascript is similar to 'self' in ruby ">
+    <meta name="title" content="How to use UUIDs as Primary Key with ecto ">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"/>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    <link rel="canonical" href="http://websymphony.net/blog/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby/">
+    <link rel="canonical" href="http://websymphony.net/blog/2015/06/28/how-to-use-uuid-as-primary-key-in-ecto-phoenix/">
     
     
-    <meta property="og:title" content="How 'this' in javascript is similar to 'self' in ruby "/>
-    <meta property="og:url" content="http://websymphony.net/blog/2012/04/21/how-this-in-javascript-is-similar-to-self-in-ruby/"/>
+    <meta property="og:title" content="How to use UUIDs as Primary Key with ecto "/>
+    <meta property="og:url" content="http://websymphony.net/blog/2015/06/28/how-to-use-uuid-as-primary-key-in-ecto-phoenix/"/>
     
     
-    <meta property="og:description" content="In this, I show similarities between 'this' in javacript and 'self' in ruby."/>
-    <meta name="description" content="In this, I show similarities between 'this' in javacript and 'self' in ruby."/>
+    <meta property="og:description" content="In this, I explain how to use UUIDs as primary key instead of IDs when using ecto with Phoenix Framework."/>
+    <meta name="description" content="In this, I explain how to use UUIDs as primary key instead of IDs when using ecto with Phoenix Framework."/>
     
     <meta property="og:site_name" content="Hi, I am Amit. I make things">
 </head>
@@ -47,56 +47,81 @@
     <div class="container">
         <header>
             <div class="meta">
-                <time pubdate datetime="2012-21-April" title="April 21, 2012">April 21, 2012</time>
+                <time pubdate datetime="2015-28-June" title="June 28, 2015">June 28, 2015</time>
             </div>
-            <h1 class="title">How 'this' in javascript is similar to 'self' in ruby</h1>
+            <h1 class="title">How to use UUIDs as Primary Key with ecto</h1>
             
         </header>
 
         <section>
-            <p>When you read or learn something new, you always try to find a correlation of new knowledge to something you already knew. So when I learned how ‘self’ changes in a ruby program, I couldn’t help but notice similarity to ‘this’ in javascript. In both ruby and javascript, ‘self’ and ‘this’ refer to the current object. Both ‘self’ and ‘this’ are transient and change depending upon the context.</p>
+            <p>Recently, I was playing around with <a href="http://phoenixframework.org">Phoenix Framework (version: <em>0.13.1</em>)</a> with Postgres as the database. Instead of using IDs for primary key, I wanted to use UUIDs. Since Phoenix and associated projects haven’t hit 1.0 yet, api is still under flux.</p>
+
+<p>As of this post, there are two resources with instructions on how to achive this and both didn’t seem to work. A <a href="http://stackoverflow.com/questions/30004008/setting-up-phoenix-framework-and-ecto-to-use-uuids-how-to-insert-the-generated">stackoverflow post</a> and a <a href="https://groups.google.com/forum/#!topic/phoenix-talk/OZaL2nSWUTE">google group discussion</a>.</p>
+
+<p>Since ecto version <em>0.12.1</em> using UUIDs as primary key coudn’t be any easier. Here is how to do it:</p>
 <!--more-->
-<p>Lets consider an example of ‘self’ in ruby first.</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>MyExample</span>
- <span class='k'>def</span> <span class='nf'>say_hello</span>
-    <span class='nb'>puts</span> <span class='nb'>self</span>
- 	<span class='nb'>puts</span> <span class='s2'>&quot;Hello there.&quot;</span>
- <span class='k'>end</span>
+<p>The migration that creates the table will need to be aware of the fact that ID column is going to be of UUID type.</p>
+<div class='highlight'><pre><code class='elixir'><span class='k'>defmodule</span> <span class='no'>Blog</span><span class='o'>.</span><span class='no'>Repo</span><span class='o'>.</span><span class='no'>Migrations</span><span class='o'>.</span><span class='no'>CreatePost</span> <span class='k'>do</span>
+<span class='k'>  </span><span class='kn'>use</span> <span class='no'>Ecto</span><span class='o'>.</span><span class='no'>Migration</span>
+
+  <span class='k'>def</span> <span class='n'>up</span> <span class='k'>do</span>
+
+<span class='k'>    </span><span class='c1'># Here we are specifying to not use default auto-incrementing id as primary key</span>
+    <span class='n'>create</span> <span class='n'>table</span><span class='p'>(</span><span class='ss'>:posts</span><span class='p'>,</span> <span class='ss'>primary_key:</span> <span class='no'>false</span><span class='p'>)</span> <span class='k'>do</span>
+<span class='k'>      </span><span class='c1'># Here we explicitly set the type of id column as uuid and assign it as primary key</span>
+      <span class='n'>add</span> <span class='ss'>:id</span><span class='p'>,</span> <span class='ss'>:uuid</span><span class='p'>,</span> <span class='ss'>primary_key:</span> <span class='no'>true</span>
+      <span class='n'>add</span> <span class='ss'>:title</span><span class='p'>,</span> <span class='ss'>:string</span>
+      <span class='n'>add</span> <span class='ss'>:body</span><span class='p'>,</span> <span class='ss'>:text</span>
+
+      <span class='n'>timestamps</span>
+    <span class='k'>end</span>
+
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='n'>down</span> <span class='k'>do</span>
+<span class='k'>    </span><span class='n'>drop</span> <span class='n'>table</span><span class='p'>(</span><span class='ss'>:posts</span><span class='p'>)</span>
+  <span class='k'>end</span>
+
 <span class='k'>end</span>
-
-<span class='c1'>#calling the function</span>
-<span class='n'>my_example_obj</span> <span class='o'>=</span> <span class='no'>MyExample</span><span class='o'>.</span><span class='n'>new</span>
-<span class='n'>my_example_obj</span><span class='o'>.</span><span class='n'>say_hello</span>
 </code></pre></div>
-<p>Here we have defined a simple class MyExample, which has an instance method <em>say</em>hello_. Then we create an instance of the class and call <em>say</em>hello_ on it. Upon invocation of instance method, ‘self’ is changed to <em>my</em>example_obj_ and therefore it prints signature of <em>my</em>example_obj_ followed by “Hello there.”</p>
-<div class='highlight'><pre><code class='ruby'><span class='c1'>#OUTPUT:</span>
-<span class='c1'>#&lt;MyExample:0x00000101082e68&gt;</span>
-<span class='s2'>&quot;Hello there.&quot;</span>
-</code></pre></div><hr />
-<p>Now lets see how an equivalent javascript handles ‘this’.</p>
-<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>MyExample</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(){</span>
-<span class='p'>}</span>
+<p>We will also need to update our model definition so that it can auto-generate UUIDs for primary keys.</p>
+<div class='highlight'><pre><code class='elixir'><span class='k'>defmodule</span> <span class='no'>Blog</span><span class='o'>.</span><span class='no'>Post</span> <span class='k'>do</span>
+<span class='k'>  </span><span class='kn'>use</span> <span class='no'>Blog</span><span class='o'>.</span><span class='no'>Web</span><span class='p'>,</span> <span class='ss'>:model</span>
 
-<span class='nx'>MyExample</span><span class='p'>.</span><span class='nx'>prototype</span> <span class='o'>=</span> <span class='p'>{</span>
-	<span class='s1'>&#39;say_hello&#39;</span> <span class='o'>:</span> <span class='kd'>function</span><span class='p'>(){</span>
-		<span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='k'>this</span><span class='p'>);</span>
-		<span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;Hello there.&quot;</span><span class='p'>);</span>
-	<span class='p'>}</span>
-<span class='p'>}</span>
+  <span class='c1'># :binary_id is managed by drivers/adapters, it will be UUID for mysql, postgres</span>
+  <span class='c1'>#  but can be ObjectID if later you decide to use mongo</span>
+  <span class='nv'>@primary_key</span> <span class='p'>{</span><span class='ss'>:id</span><span class='p'>,</span> <span class='ss'>:binary_id</span><span class='p'>,</span> <span class='ss'>autogenerate:</span> <span class='no'>true</span><span class='p'>}</span>
 
-<span class='kd'>var</span> <span class='nx'>my_example_obj</span> <span class='o'>=</span> <span class='k'>new</span> <span class='nx'>MyExample</span><span class='p'>();</span>
-<span class='nx'>my_example_obj</span><span class='p'>.</span><span class='nx'>say_hello</span><span class='p'>();</span>
+  <span class='n'>schema</span> <span class='s2'>&quot;posts&quot;</span> <span class='k'>do</span>
+<span class='k'>    </span><span class='n'>field</span> <span class='ss'>:title</span><span class='p'>,</span> <span class='ss'>:string</span>
+    <span class='n'>field</span> <span class='ss'>:body</span><span class='p'>,</span> <span class='ss'>:string</span>
+
+    <span class='n'>timestamps</span>
+  <span class='k'>end</span>
+
+  <span class='nv'>@required_fields</span> <span class='err'>~</span><span class='n'>w</span><span class='p'>(</span><span class='n'>title</span> <span class='n'>body</span><span class='p'>)</span>
+  <span class='nv'>@optional_fields</span> <span class='err'>~</span><span class='n'>w</span><span class='p'>()</span>
+
+
+  <span class='nv'>@doc</span> <span class='sd'>&quot;&quot;&quot;</span>
+<span class='sd'>  Creates a changeset based on the `model` and `params`.</span>
+
+<span class='sd'>  If `params` are nil, an invalid changeset is returned</span>
+<span class='sd'>  with no validation performed.</span>
+<span class='sd'>  &quot;&quot;&quot;</span>
+  <span class='k'>def</span> <span class='n'>changeset</span><span class='p'>(</span><span class='n'>model</span><span class='p'>,</span> <span class='n'>params</span> <span class='p'>\\</span> <span class='ss'>:empty</span><span class='p'>)</span> <span class='k'>do</span>
+<span class='k'>    </span><span class='n'>model</span>
+    <span class='o'>|&gt;</span> <span class='n'>cast</span><span class='p'>(</span><span class='n'>params</span><span class='p'>,</span> <span class='nv'>@required_fields</span><span class='p'>,</span> <span class='nv'>@optional_fields</span><span class='p'>)</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
 </code></pre></div>
-<p>Here we have defined a simple class MyExample just like our ruby program and have defined <em>say</em>hello_ method which gives us insight about ‘this’. And similar to ‘self’ in our ruby program, in javascript ‘this’ changes to the object, the method was called on and hence we get the following output.</p>
-<div class='highlight'><pre><code class='javascript'><span class='cm'>/*OUTPUT*/</span>
-<span class='nx'>MyExample</span> <span class='cm'>/*the value of &#39;this&#39;*/</span>
-<span class='s2'>&quot;Hello there.&quot;</span>
-</code></pre></div>
-<p>It is interesting to see how different languages solve certain problems. And due to fundamental similarities in concept, i.e. dynamic nature of javascript, ruby. They have similar concept of ‘this’ and ‘self’ in method invocation on objects.</p>
+<p>And that is all you need to use UUIDs from primary keys with ecto and phoenix framework.</p>
+
+<p>As an aside, I really like how these projects are shaping up. Also, the community around Elixir and Phoenix is absolutely fantastic. It took me no more than 5 minutes to figure this out by hopping on Elixir IRC and José Valim himself explaining how to solve this problem.</p>
             
 <div class="social">
     <div>
-        <a href="https://twitter.com/share" class="twitter-share-button"  data-text="How 'this' in javascript is similar to 'self' in ruby" data-related="websymphony">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button"  data-text="How to use UUIDs as Primary Key with ecto" data-related="websymphony">Tweet</a>
     </div>
     
     
@@ -120,10 +145,8 @@
             <hr>
             <p>
               
-                <a class="basic-alignment left" href="/blog/2012/03/21/where-to-find-people-to-validate-your-mvp/" title="Previous Post: Where to find people to validate your MVP?">&laquo; Where to find people to validate your MVP?</a>
+                <a class="basic-alignment left" href="/blog/2013/05/15/i-dont-have-an-itch/" title="Previous Post: I dont have an itch">&laquo; I dont have an itch</a>
               
-              
-                <a class="basic-alignment right" href="/blog/2012/10/20/fixing-utf8-encoding-issue-in-postgres/" title="Next Post: Fixing utf8 encoding issue in Postgres">Fixing utf8 encoding issue in Postgres &raquo;</a>
               
             </p>
             <div class="clearfix"></div>
